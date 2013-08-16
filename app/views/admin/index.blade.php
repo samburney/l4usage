@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-	<h3>All Users</h3>
+	<h3>Users</h3>
 	<table class="table table-striped">
 		<tr>
 			<th>
@@ -30,12 +30,16 @@
 		</tr>
 	@foreach($users as $user)
 		<tr>
-			<td>{{$user->name}}</td>
+			<td>
+				<a href="{{baseURL()}}/user/view/{{$user->id}}">
+					{{$user->name}}
+				</a>
+			</td>
 			<td>{{$user->cn}}</td>
 			<td>{{$user->lastip}}</td>
 			<td>{{date("d/m/Y H:i:s", $user->lastseen)}}</td>
-			<td>{{$user->downloaded_total}}</td>
-			<td>{{$user->uploaded_total}}</td>
+			<td>{{sU::bytesToSize($user->downloaded_total)}}</td>
+			<td>{{sU::bytesToSize($user->uploaded_total)}}</td>
 			<td>
 				<a href="{{baseURL()}}/admin/user/edit/{{$user->id}}" class="btn btn-primary btn-xs">Edit</a>
 			</td>

@@ -2,9 +2,16 @@
 	"name": "laravel/laravel",
 	"description": "The Laravel Framework.",
 	"keywords": ["framework", "laravel"],
+	"repositories": [
+	    {
+	        "type": "composer",
+	        "url": "http://composer.sifnt.wan"
+	    }
+	],
 	"require": {
 		"laravel/framework": "4.0.*",
-		"anahkiasen/former": "dev-develop"
+		"anahkiasen/former": "dev-develop",
+		"sifnt/sifnt-util": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

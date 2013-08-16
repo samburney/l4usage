@@ -20,8 +20,8 @@ Route::group(array('prefix' => 'admin'), function()
 {
 	Route::get('users', 'AdminController@getUserIndex');
 
-	Route::get('user/{id}', 'AdminController@getUser');
-
 	Route::get('user/edit/{id}', 'AdminController@getUserEdit');
 	Route::post('user/edit/{id}', 'AdminController@postUserEdit');
 });
+
+Route::controller('user', 'UserController');

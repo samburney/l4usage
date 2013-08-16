@@ -85,7 +85,8 @@ function baseURL()
 }
 
 // Quick function to call print_r within a HTML <pre>
-function debug($arr){
+function debug($arr)
+{
 	$backtrace = debug_backtrace();
 	$file = $backtrace[0]['file'];
 	$line = $backtrace[0]['line'];
@@ -94,4 +95,32 @@ function debug($arr){
 	echo "<b>$file:$line</b>\n";
 	print_r($arr);
 	echo '</pre>';
+}
+
+function hours($year = NULL, $month = NULL, $day = NULL)
+{
+	$year = isset($year) ? $year : date('Y');
+	$month = isset($month) ? $month : date('m');
+	$day = isset($day) ? $day : date('d');
+
+	$hours = array(
+		'year' => array(
+			'start' => strtotime("$year-1-1 00:00:00"),
+			'end' => strtotime("$year-12-31 23:59:59"),
+		),
+		'month' => array(
+			'start' => strtotime("$year-$month-1 00:00:00"),
+			'end' => strtotime("$year-$month-" . date('t', strtotime("$year-$month-1 00:00:00")) . " 23:59:59"),
+		),
+		'day' => array(
+			'start' => strtotime("$year-$month-$day 00:00:00"),
+			'end' => strtotime("$year-$month-$day 23:59:59"),
+		),
+	);
+
+	for($i = 1; $i <= 24; $i++) {
+		$hours['hour'][$i] = strtotime("$year-$month-$day $i:00:00");
+	}
+
+	return $hours;
 }

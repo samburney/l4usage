@@ -31,15 +31,9 @@ class AdminController extends BaseController
 			->with('users', $users);
 	}
 
-	function getUser($id)
-	{
-		$user = User::with('hour_totals')->find($id);
-		debug($user->toArray());
-	}
-
 	function getUserEdit($id)
 	{
-		$user = User::with('hour_totals')->find($id);
+		$user = User::find($id);
 
 		return View::make('admin/user_edit')
 			->with('user', $user);
