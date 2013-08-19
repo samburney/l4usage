@@ -11,7 +11,7 @@
     {{Former::framework('TwitterBootstrap3')}}
     <div class="container">
       <div class="row">
-        <nav class="navbar" role="navigation">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
           <div class="navbar-header">
             <a class="navbar-brand" href="{{baseURL()}}">l4quota</a>
           </div>

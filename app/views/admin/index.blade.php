@@ -8,6 +8,13 @@
 				<a href="?page={{Paginator::getCurrentPage()}}&amp;sort=name&amp;direction={{Input::get('direction') == 'asc' && Input::get('sort') == 'name'  ? 'desc' : 'asc'}}">
 					User Name
 				</a>
+	@if(Input::get('sort') == 'name')
+		@if(Input::get('direction') == 'asc')
+					<span class="glyphicon glyphicon-chevron-down"></span>
+		@else
+					<span class="glyphicon glyphicon-chevron-up"></span>
+		@endif
+	@endif					
 			</th>
 			<th>Certificate CN</th>
 			<th>IP Address</th>
@@ -15,16 +22,37 @@
 				<a href="?page={{Paginator::getCurrentPage()}}&amp;sort=lastseen&amp;direction={{Input::get('direction') == 'asc' && Input::get('sort') == 'lastseen' ? 'desc' : 'asc'}}">
 					Last Seen
 				</a>
+	@if(Input::get('sort') == 'lastseen')
+		@if(Input::get('direction') == 'asc')
+					<span class="glyphicon glyphicon-chevron-down"></span>
+		@else
+					<span class="glyphicon glyphicon-chevron-up"></span>
+		@endif
+	@endif					
 			</th>
 			<th>
 				<a href="?page={{Paginator::getCurrentPage()}}&amp;sort=downloaded_total&amp;direction={{Input::get('direction') == 'asc' && Input::get('sort') == 'downloaded_total' ? 'desc' : 'asc'}}">
 					Downloaded
 				</a>
+	@if(Input::get('sort') == 'downloaded_total')
+		@if(Input::get('direction') == 'asc')
+					<span class="glyphicon glyphicon-chevron-down"></span>
+		@else
+					<span class="glyphicon glyphicon-chevron-up"></span>
+		@endif
+	@endif					
 			</th>
 			<th>
 				<a href="?page={{Paginator::getCurrentPage()}}&amp;sort=uploaded_total&amp;direction={{Input::get('direction') == 'asc' && Input::get('sort') == 'uploaded_total' ? 'desc' : 'asc'}}">
 					Uploaded
 				</a>
+	@if(Input::get('sort') == 'uploaded_total')
+		@if(Input::get('direction') == 'asc')
+					<span class="glyphicon glyphicon-chevron-down"></span>
+		@else
+					<span class="glyphicon glyphicon-chevron-up"></span>
+		@endif
+	@endif					
 			</th>
 			<th>Actions</th>
 		</tr>
@@ -47,6 +75,6 @@
 	@endforeach		
 	</table>
 <div class="text-center">
-	{{$users->links()}}
+	{{$users->appends(array('sort' => Input::get('sort'), 'direction' => Input::get('direction')))->links()}}
 </div>
 @endsection
