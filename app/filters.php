@@ -124,3 +124,26 @@ function hours($year = NULL, $month = NULL, $day = NULL)
 
 	return $hours;
 }
+
+function generate_sort_url($fieldname, $default_direction = 'asc')
+{
+	$page = Paginator::getCurrentPage();
+	$sort = $fieldname;
+	
+	if($default_direction == 'asc') {
+		$direction = Input::get('direction') == 'asc' && Input::get('sort') == $fieldname ? 'desc' : 'asc';
+	}
+	else {
+		$direction = Input::get('direction') == 'desc' && Input::get('sort') == $fieldname ? 'asc' : 'desc';
+	}
+
+	$from_year = Input::get('from_year') ? Input::get('from_year') : date('Y');
+	$from_month = Input::get('from_month') ? Input::get('from_month') : date('m');
+	$from_day = Input::get('from_day') ? Input::get('from_day') : date('1');
+
+	$to_year = Input::get('to_year') ? Input::get('to_year') : date('Y');
+	$to_month = Input::get('to_month') ? Input::get('to_month') : date('m');
+	$to_day = Input::get('to_day') ? Input::get('to_day') : date('t');
+
+	return "?page=$page&amp;sort=$sort&amp;direction=$direction&amp;from_year=$from_year&amp;from_month=$from_month&amp;from_day=$from_day&amp;to_year=$to_year&amp;to_month=$to_month&amp;to_day=$to_day";
+}
