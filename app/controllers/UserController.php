@@ -5,11 +5,15 @@ class UserController extends BaseController
 	{
 		$user = User::with('hour_totals')->find($id);
 
-		$hours = hours();
+		$from['year'] = Input::get('year') ? Input::get('year') : date('Y');
+		$from['month'] = Input::get('month') ? Input::get('month') : date('m');
+
+		$hours = hours($from['year'], $from['month']);
 		$usage['months'] = $user->usage_months($hours['month']['start']);
 		$usage['days'] = $user->usage_days($hours['month']['start'], $hours['month']['end']);
 
 		return View::make('users/view')
+			->with('from', $from)
 			->with('user', $user)
 			->with('usage', $usage);
 	}
