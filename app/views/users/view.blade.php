@@ -16,15 +16,21 @@
 	</select>
 	<input type="submit" name="submit" value="Go">	
 </form>
+<h4>{{date('F', strtotime(date('Y') . "-" . $from['month'] . "-01"))}} {{$from['year']}}</h4>
+@if(isset($usage['months'][0]))
 <ul>
 	<li>Downloaded: {{sU::bytesToSize($usage['months'][0]->downloaded_total)}}</li>
 	<li>Uploaded: {{sU::bytesToSize($usage['months'][0]->uploaded_total)}}</li>
 </ul>
+@else
+<i><b>There is no usage data available for this period.</b></i>
+@endif
 <h4>All time</h4>
 <ul>
 	<li>Downloaded: {{sU::bytesToSize($user->hour_totals()->first()->downloaded_total)}}</li>
 	<li>Uploaded: {{sU::bytesToSize($user->hour_totals()->first()->uploaded_total)}}</li>
 </ul>
+@if(isset($usage['months'][0]))
 <h3>Daily Usage</h3>
 <table class="table table-striped">
 	<tr>
@@ -46,4 +52,5 @@
 	@endif
 @endforeach
 </table>
+@endif
 @endsection
