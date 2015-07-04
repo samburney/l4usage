@@ -10,7 +10,7 @@
 	],
 	"require": {
 		"laravel/framework": "4.0.*",
-		"anahkiasen/former": "dev-develop",
+		"anahkiasen/former": "3.4.4",
 		"sifnt/sifnt-util": "dev-master"
 	},
 	"autoload": {
